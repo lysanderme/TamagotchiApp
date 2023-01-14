@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tamagotchi = Tamagotchi(name: "Dave")
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Form {
+            VStack(alignment: .leading, spacing: 20) {
+                Text(tamagotchi.getName()).font(.title)
+                Text("\(tamagotchi.displayStats())")
+            }
+            Section {
+                Button("Sleep", action: {
+                    tamagotchi.sleep()
+                })
+            }
         }
-        .padding()
     }
 }
 
