@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tamagotchi = Tamagotchi(name: "Dave")
+    @StateObject private var tamagotchi = Tamagotchi(name: "Dave")
     
     var body: some View {
         Form {
@@ -20,6 +20,11 @@ struct ContentView: View {
                 Button("Sleep", action: {
                     tamagotchi.sleep()
                 })
+            Section {
+                Button("Eat Snack", action: {
+                    tamagotchi.eatSnack()
+                })
+                }
             }
         }
     }
