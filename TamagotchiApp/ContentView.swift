@@ -20,10 +20,15 @@ struct ContentView: View {
                 Button("Sleep", action: {
                     tamagotchi.sleep()
                 })
-            Section {
-                Button("Eat Snack", action: {
-                    tamagotchi.eatSnack()
-                })
+                Section {
+                    Button("Feed \(tamagotchi.getName()) Snack", action: {
+                        tamagotchi.eatSnack()
+                    })
+                    Section {
+                        Button("Feed \(tamagotchi.getName()) a Meal", action: {
+                            tamagotchi.eatMeal()
+                        })
+                    }
                 }
             }
         }

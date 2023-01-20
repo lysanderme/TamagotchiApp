@@ -50,6 +50,27 @@ class Tamagotchi: ObservableObject {
         self.weight += 1
         self.tiredness += 1
     }
+    func eatMeal() {
+        if self.hunger <= 2 {
+            self.hunger = 0
+        } else {
+            self.hunger -= 2
+        }
+        self.happy += 1
+        if self.weight >= 10 {
+            getSick()
+        } else {
+            self.weight += 3
+        }
+        self.tiredness += 2
+    }
+    
+    func getSick() {
+        self.sick = true
+        self.weight -= 6
+        self.tiredness += 7
+        self.happy = 0
+    }
     
     
 }
