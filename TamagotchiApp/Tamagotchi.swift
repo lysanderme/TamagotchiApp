@@ -12,7 +12,7 @@ class Tamagotchi: ObservableObject {
     @Published var hunger: Int
     @Published var happy: Int
     @Published var weight: Int
-    var years: Int
+    @Published var years: Int
     @Published var tiredness: Int
     @Published var sick: Bool
     
@@ -33,6 +33,7 @@ class Tamagotchi: ObservableObject {
             Weight: \(weight)
             Age: \(years)
             Tiredness: \(tiredness)
+            Sick: \(sick)
             """
     }
     
@@ -45,11 +46,20 @@ class Tamagotchi: ObservableObject {
     }
     
     func eatSnack() {
-        self.hunger -= 1
+        if self.hunger <= 1 {
+            self.hunger = 0
+        } else {
+            self.hunger -= 1
+        }
         self.happy += 1
-        self.weight += 1
+        if self.weight >= 10 {
+            getSick()
+        } else {
+            self.weight += 1
+        }
         self.tiredness += 1
     }
+    
     func eatMeal() {
         if self.hunger <= 2 {
             self.hunger = 0
