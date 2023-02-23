@@ -14,20 +14,32 @@ struct ContentView: View {
         Form {
             VStack(alignment: .leading, spacing: 20) {
                 Text(tamagotchi.getName()).font(.title)
-                Text("\(tamagotchi.displayStats())")
+                if tamagotchi.dead == true {
+                    Text("\(tamagotchi.displayStats())").font(.title)
+                } else {
+                    Text("\(tamagotchi.displayStats())")
+                }
             }
-            Section {
-                Button("Sleep", action: {
-                    tamagotchi.sleep()
-                })
+            if tamagotchi.dead {
+            } else {
                 Section {
-                    Button("Feed \(tamagotchi.getName()) Snack", action: {
-                        tamagotchi.eatSnack()
+                    Button("Sleep", action: {
+                        tamagotchi.sleep()
                     })
                     Section {
-                        Button("Feed \(tamagotchi.getName()) a Meal", action: {
-                            tamagotchi.eatMeal()
+                        Button("Feed \(tamagotchi.getName()) Snack", action: {
+                            tamagotchi.eatSnack()
                         })
+                        Section {
+                            Button("Feed \(tamagotchi.getName()) a Meal", action: {
+                                tamagotchi.eatMeal()
+                            })
+                            Section {
+                                Button("Make \(tamagotchi.getName()) do Exercise", action: {
+                                    tamagotchi.exercise()
+                                })
+                            }
+                        }
                     }
                 }
             }
