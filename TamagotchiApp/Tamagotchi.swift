@@ -33,9 +33,11 @@ class Tamagotchi: ObservableObject {
         if dead {
             var cause: String = ""
             if self.sicknessIgnored >= 5 {
-                cause = "sickness"
+                cause = "obesity"
             } else if self.tiredness >= 15 {
-                cause = "tiredness"
+                cause = "exhaustion"
+            } else if self.hunger >= 10 {
+                cause = "starvation"
             }
             return  """
                     Oh No!
@@ -76,6 +78,7 @@ class Tamagotchi: ObservableObject {
     
     func sleep() {
         self.tiredness = 0
+        self.hunger += 3
     }
     
     func eatSnack() {
@@ -146,7 +149,11 @@ class Tamagotchi: ObservableObject {
             self.weight -= 1
         }
         self.tiredness += 1
-        if tiredness >= 15 {
+        if self.tiredness >= 15 {
+            die()
+        }
+        self.hunger += 2
+        if self.hunger >= 10 {
             die()
         }
     }

@@ -12,22 +12,19 @@ struct ContentView: View {
     
     var body: some View {
         Form {
-            VStack(alignment: .leading, spacing: 20) {
-                Text(tamagotchi.getName()).font(.title)
-                if tamagotchi.dead == true {
-                    Text("\(tamagotchi.displayStats())").font(.title)
-                } else {
+            if tamagotchi.dead {
+                Text("\(tamagotchi.displayStats())").font(.title)
+            } else {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(tamagotchi.getName()).font(.title)
                     Text("\(tamagotchi.displayStats())")
                 }
-            }
-            if tamagotchi.dead {
-            } else {
                 Section {
-                    Button("Sleep", action: {
+                    Button("Make \(tamagotchi.getName()) Sleep", action: {
                         tamagotchi.sleep()
                     })
                     Section {
-                        Button("Feed \(tamagotchi.getName()) Snack", action: {
+                        Button("Feed \(tamagotchi.getName()) a Snack", action: {
                             tamagotchi.eatSnack()
                         })
                         Section {
@@ -35,7 +32,7 @@ struct ContentView: View {
                                 tamagotchi.eatMeal()
                             })
                             Section {
-                                Button("Make \(tamagotchi.getName()) do Exercise", action: {
+                                Button("Make \(tamagotchi.getName()) Exercise", action: {
                                     tamagotchi.exercise()
                                 })
                             }
