@@ -16,6 +16,8 @@ class Tamagotchi: ObservableObject {
     @Published var sick: Bool
     @Published var sicknessIgnored: Int
     @Published var dead: Bool
+    @Published var wrongfulMedicine: Bool
+    
 
     
     init(name: String) {
@@ -27,13 +29,18 @@ class Tamagotchi: ObservableObject {
         self.sick = false
         self.sicknessIgnored = 0
         self.dead = false
+        self.wrongfulMedicine = false
     }
     
     func displayStats() -> String {
         if dead {
             var cause: String = ""
             if self.sicknessIgnored >= 5 {
-                cause = "obesity"
+                if self.wrongfulMedicine {
+                    cause = "wrongfully taken medicine"
+                } else {
+                    cause = "obesity"
+                }
             } else if self.tiredness >= 15 {
                 cause = "exhaustion"
             } else if self.hunger >= 10 {
@@ -152,10 +159,25 @@ class Tamagotchi: ObservableObject {
         if self.tiredness >= 15 {
             die()
         }
-        self.hunger += 2
+        self.hunger += 1
         if self.hunger >= 10 {
             die()
         }
     }
     
+    func playGame() {
+        if self.happy < 10 {
+            self.happy += 1
+        }
+    }
+    
+    func takeMedicine() {
+        if self.sick == true && !wrongfulMedicine {
+            self.sick.toggle()
+            self.sicknessIgnored = 0
+        } else {
+            self.sick = true
+            self.wrongfulMedicine = true
+        }
+    }
 }

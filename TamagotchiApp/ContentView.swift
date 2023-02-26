@@ -23,21 +23,21 @@ struct ContentView: View {
                     Button("Make \(tamagotchi.getName()) Sleep", action: {
                         tamagotchi.sleep()
                     })
-                    Section {
-                        Button("Feed \(tamagotchi.getName()) a Snack", action: {
-                            tamagotchi.eatSnack()
-                        })
-                        Section {
-                            Button("Feed \(tamagotchi.getName()) a Meal", action: {
-                                tamagotchi.eatMeal()
-                            })
-                            Section {
-                                Button("Make \(tamagotchi.getName()) Exercise", action: {
-                                    tamagotchi.exercise()
-                                })
-                            }
-                        }
-                    }
+                    Button("Feed \(tamagotchi.getName()) a Snack", action: {
+                        tamagotchi.eatSnack()
+                    })
+                    Button("Feed \(tamagotchi.getName()) a Meal", action: {
+                        tamagotchi.eatMeal()
+                    })
+                    Button("Play a Game with \(tamagotchi.getName())", action: {
+                        tamagotchi.playGame()
+                    })
+                    Button("Make \(tamagotchi.getName()) Exercise", action: {
+                        tamagotchi.exercise()
+                    })
+                    Button("Give \(tamagotchi.getName()) some Medicine", action: {
+                        tamagotchi.takeMedicine()
+                    })
                 }
             }
         }
